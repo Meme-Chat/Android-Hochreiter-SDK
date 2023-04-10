@@ -3,7 +3,7 @@
 
 ```groovy
     dependencies {      
-        implementation 'com.github.Meme-Chat:hochreiter-sdk-android:1.0'
+        implementation 'app.memechat:hochreiter-sdk-android:1.0'
     }
 ```
 
@@ -35,7 +35,20 @@ If your apps require extending your Application, you can initialize the object o
 ```
 
 ## 🚀 Usage
-1. Get categories
+
+Following are the methods open for use:
+
+1. [Get Categories](https://github.com/Meme-Chat/Android-Hochreiter-SDK/blob/main/README.mdd#gc)
+2. [Categories based Memes](https://github.com/Meme-Chat/Android-Hochreiter-SDK/blob/main/README.md#cbm)
+3. [Search Memes](https://github.com/Meme-Chat/Android-Hochreiter-SDK/blob/main/README.md#sm)
+4. [Log Meme Shared Event](https://github.com/Meme-Chat/Android-Hochreiter-SDK/blob/main/README.md#lms)
+5. [Log Meme Viewed Event](https://github.com/Meme-Chat/Android-Hochreiter-SDK/blob/main/README.md#lmv)
+6. [Log Event](https://github.com/Meme-Chat/Android-Hochreiter-SDK/blob/main/README.md#le)
+
+
+#### Get Categories <a name="gc"></a>
+
+The getCatagories method in HochreiterSDK is used to retrieve a list of all the categories available for memes on the Hochreiter platform. Here's an example of how to use it:
 
 ```java
     hochreiter.getCategories(boolean emoticonsInTitles, new HochreiterResponse.HochCategoryResponse() {
@@ -51,23 +64,10 @@ If your apps require extending your Application, you can initialize the object o
     });
 ```
 
-2. Get memes based on search query
+#### Categories based Memes <a name="cbm"></a>
 
-```java 
-    hochreiter.searchMemes(String query, 1, new HochreiterResponse.HochMemeResponse() {
-        @Override
-        public void onSuccess(@NonNull List<Meme> memeList) {
-            showToast(memeList.toString());
-        }
-
-        @Override
-        public void onFailure(HockError error) {
-            showToast(error.getStatus() + " | " + error.getMsg());
-        }
-    });
-```
-
-3. Get memes based on specific category from our available range of categories
+The getCategoryMemes method is used to fetch the memes under a particular category. Here's how to use it:
+Here categoryId is the 'identity' value of the selected category.
 
 ```java
     hochreiter.getCategoryMemes(String categoryId, 1, new HochreiterResponse.HochMemeResponse() {
@@ -83,19 +83,37 @@ If your apps require extending your Application, you can initialize the object o
     });
 ```
 
-4. Log meme shared event
+#### Search Memes <a name="sm"></a>
+
+The searchMemes function is a part of the HochreiterSDK that allows you to fetch memes based on a given search term and a page number. The function takes two parameters:
+
+```java 
+    hochreiter.searchMemes(String query, Integer pageNumber, new HochreiterResponse.HochMemeResponse() {
+        @Override
+        public void onSuccess(@NonNull List<Meme> memeList) {
+            showToast(memeList.toString());
+        }
+
+        @Override
+        public void onFailure(HockError error) {
+            showToast(error.getStatus() + " | " + error.getMsg());
+        }
+    });
+```
+
+#### Log Meme Shared Event <a name="lms"></a>
 
 ```java
     hochreiter.logSharedEvent(Integer memeId);
 ```
 
-5. Log meme viewed event
+#### Log Meme Viewed Event <a name="lmv"></a>
 
 ```java
     hochreiter.logViewedEvent(Integer memeId);
 ```
 
-6. Log event
+#### Log Event <a name="le"></a>
 
 ```java
     hochreiter.logEvent(String eventName, Integer id1, Integer id2);
