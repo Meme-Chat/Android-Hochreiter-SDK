@@ -70,7 +70,7 @@ The getCategoryMemes method is used to fetch the memes under a particular catego
 Here categoryId is the 'identity' value of the selected category.
 
 ```java
-    hochreiter.getCategoryMemes(String categoryId, 1, new HochreiterResponse.HochMemeResponse() {
+    hochreiter.getCategoryMemes(String categoryId, Integer pageNumber, new HochreiterResponse.HochMemeResponse() {
         @Override
         public void onSuccess(@NonNull List<Meme> memeList) {
             showToast(memeList.toString());
